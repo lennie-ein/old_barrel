@@ -33,10 +33,10 @@ class _HomePageState extends State<HomePage> {
   Future getCurrentLocation() async {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    var lastPosition = await Geolocator.getLastKnownPosition();
+    // var lastPosition = await Geolocator.getLastKnownPosition();
     List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemarks[0];
-    print(lastPosition);
+    // print(lastPosition);
     // print(placemarks);
     print(place);
     setState(() {

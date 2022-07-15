@@ -49,6 +49,7 @@ class _CartPageState extends State<CartPage> {
       "Lat: ${position.latitude},Long: ${position.longitude}";
       Address = "${place.isoCountryCode}, ${place.administrativeArea}, ${place.locality}, ${place.thoroughfare}";
     });
+    print(Address);
   }
 
   Timer? timer;
