@@ -27,23 +27,52 @@ class Category {
 }
 
 class _HomePageState extends State<HomePage> {
-
   var locationMessage = '';
   var Address = '';
+
   Future getCurrentLocation() async {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     // var lastPosition = await Geolocator.getLastKnownPosition();
-    List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemarks[0];
     // print(lastPosition);
     // print(placemarks);
-    print(place);
+    // print(place);
     setState(() {
-      locationMessage =
-      "Lat: ${position.latitude},Long: ${position.longitude}";
-      Address = "${place.isoCountryCode}, ${place.administrativeArea}, ${place.locality}, ${place.thoroughfare}";
+      locationMessage = "Lat: ${position.latitude},Long: ${position.longitude}";
+      Address =
+      "${place.isoCountryCode}, ${place.administrativeArea}, ${place.locality}, ${place.thoroughfare}";
     });
+
+  }
+
+  Future permissionsCheck() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    print(serviceEnabled);
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+
+    return await getCurrentLocation();
   }
 
   static final AdRequest request = AdRequest(
@@ -88,14 +117,16 @@ class _HomePageState extends State<HomePage> {
         onAdClosed: (Ad ad) => print('$BannerAd onAdClosed.'),
       ),
     );
-    return banner.load();
+    // return banner.load();
   }
 
   Timer? timer;
+
   @override
   void initState() {
-     _checkForBuyNow();
-     timer = Timer.periodic(Duration(seconds: 360), (Timer t) => getCurrentLocation());
+    _checkForBuyNow();
+    timer = Timer.periodic(
+        Duration(seconds: 360), (Timer t) => getCurrentLocation());
     super.initState();
   }
 
@@ -105,9 +136,6 @@ class _HomePageState extends State<HomePage> {
     _anchoredBanner?.dispose();
     timer?.cancel();
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -126,8 +154,9 @@ class _HomePageState extends State<HomePage> {
     return Builder(
       builder: (BuildContext context) {
         if (!_loadingAnchoredBanner) {
-          _loadingAnchoredBanner = true;
+          _loadingAnchoredBanner = false;
           _createAnchoredBanner(context);
+          permissionsCheck();
           getCurrentLocation();
         }
         return Scaffold(
@@ -298,6 +327,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
   void _checkForBuyNow() async {
     // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     // if (!sharedPreferences.containsKey("key_buy_this_shown") &&

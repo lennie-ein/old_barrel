@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:old_barrel/BottomNavigation/Home/home_page.dart';
 import 'package:old_barrel/Theme/style.dart';
 import 'package:old_barrel/map_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -56,6 +57,7 @@ class OldBarrel extends StatelessWidget {
           routes: PageRoutes().routes(),
           debugShowCheckedModeBanner: false,
         );
+        //LoginNavigator()
       },
     );
   }

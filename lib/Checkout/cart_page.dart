@@ -35,21 +35,50 @@ List<CartItem> cartItems = [
 class _CartPageState extends State<CartPage> {
   var locationMessage = '';
   var Address = '';
+
   Future getCurrentLocation() async {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    var lastPosition = await Geolocator.getLastKnownPosition();
-    List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+    // var lastPosition = await Geolocator.getLastKnownPosition();
+    List<Placemark> placemarks =
+    await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemarks[0];
-    print(lastPosition);
+    // print(lastPosition);
     // print(placemarks);
-    print(place);
+    // print(place);
     setState(() {
-      locationMessage =
-      "Lat: ${position.latitude},Long: ${position.longitude}";
-      Address = "${place.isoCountryCode}, ${place.administrativeArea}, ${place.locality}, ${place.thoroughfare}";
+      locationMessage = "Lat: ${position.latitude},Long: ${position.longitude}";
+      Address =
+      "${place.isoCountryCode}, ${place.administrativeArea}, ${place.locality}, ${place.thoroughfare}";
     });
-    print(Address);
+
+  }
+
+  Future permissionsCheck() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    print(serviceEnabled);
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+
+    return await getCurrentLocation();
   }
 
   Timer? timer;
@@ -72,6 +101,7 @@ class _CartPageState extends State<CartPage> {
 
     return Builder(
       builder: (context) {
+        permissionsCheck();
         getCurrentLocation();
         return Scaffold(
           backgroundColor: Theme.of(context).secondaryHeaderColor,
