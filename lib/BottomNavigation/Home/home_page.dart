@@ -124,8 +124,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    _checkForBuyNow();
-    timer = Timer.periodic(
+        timer = Timer.periodic(
         Duration(seconds: 360), (Timer t) => getCurrentLocation());
     super.initState();
   }
@@ -328,16 +327,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _checkForBuyNow() async {
-    // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    // if (!sharedPreferences.containsKey("key_buy_this_shown") &&
-    //     AppConfig.isDemoMode) {
-    //   Future.delayed(Duration(seconds: 10), () async {
-    //     if (mounted) {
-    //       BuyThisApp.showSubscribeDialog(context);
-    //       sharedPreferences.setBool("key_buy_this_shown", true);
-    //     }
-    //   });
-    // }
-  }
+
 }

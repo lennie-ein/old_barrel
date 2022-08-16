@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:old_barrel/Assets/assets.dart';
 import 'package:old_barrel/Components/custom_button2.dart';
 import 'package:old_barrel/Components/entry_field2.dart';
@@ -217,7 +216,7 @@ class _CartPageState extends State<CartPage> {
                                           height: 8,
                                         ),
                                         Text(
-                                          '\$ ' + cartItems[index].price.toString(),
+                                          'KES ' + cartItems[index].price.toString(),
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText2!
@@ -283,7 +282,7 @@ class _CartPageState extends State<CartPage> {
                                           height: 32,
                                         ),
                                         Text(
-                                          '\$ ' +
+                                          'KES ' +
                                               (cartItems[index].price *
                                                       cartItems[index].quantity)
                                                   .toString(),
@@ -342,7 +341,7 @@ class _CartPageState extends State<CartPage> {
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               Text(
-                                '\$ 36.00',
+                                'KES 36.00',
                                 style: Theme.of(context).textTheme.bodyText2,
                               )
                             ],
@@ -359,7 +358,7 @@ class _CartPageState extends State<CartPage> {
                                 style: Theme.of(context).textTheme.bodyText2,
                               ),
                               Text(
-                                '\$ 2.00',
+                                'KES 2.00',
                                 style: Theme.of(context).textTheme.bodyText2,
                               )
                             ],
@@ -381,7 +380,7 @@ class _CartPageState extends State<CartPage> {
                                         fontSize: 16),
                               ),
                               Text(
-                                '\$ 36.00',
+                                'KES 36.00',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2!
@@ -407,7 +406,7 @@ class _CartPageState extends State<CartPage> {
                                 .copyWith(fontSize: 12),
                           ),
                           centerWidget: Text(
-                            locale.pay!.toUpperCase() + ' \$38.00',
+                            locale.pay!.toUpperCase() + ' KES38.00',
                             style: Theme.of(context).textTheme.bodyText1!.copyWith(
                                 fontWeight: FontWeight.w700, fontSize: 16),
                           ),

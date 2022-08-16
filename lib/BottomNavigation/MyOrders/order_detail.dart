@@ -253,7 +253,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         .copyWith(fontSize: 12),
                   ),
                   suffix: Text(
-                    '\$ 38.00',
+                    'KES 38.00',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1!
@@ -300,7 +300,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                   height: 8,
                                 ),
                                 Text(
-                                  '\$ ' +
+                                  'KES ' +
                                       cartItems[index]
                                           .price
                                           .toString()
@@ -317,7 +317,7 @@ class _OrderDetailState extends State<OrderDetail> {
                             ),
                             Spacer(),
                             Text(
-                              '\$ ' +
+                              'KES ' +
                                   (cartItems[index].price *
                                           cartItems[index].quantity)
                                       .toString(),
@@ -341,7 +341,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
                       Text(
-                        '\$ 36.00',
+                        'KES 36.00',
                         style: Theme.of(context).textTheme.bodyText2,
                       )
                     ],
@@ -358,7 +358,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
                       Text(
-                        '\$ 2.00',
+                        'KES 2.00',
                         style: Theme.of(context).textTheme.bodyText2,
                       )
                     ],
@@ -377,7 +377,7 @@ class _OrderDetailState extends State<OrderDetail> {
                             fontSize: 16),
                       ),
                       Text(
-                        '\$ 36.00',
+                        'KES 36.00',
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             color: Theme.of(context).primaryColor,
                             fontSize: 16),

@@ -139,11 +139,11 @@ class _BeerPageState extends State<BeerPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$40'.padLeft(10).padRight(10),
+                        'KES40'.padLeft(10).padRight(10),
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Text(
-                        '\$100'.padLeft(10).padRight(18),
+                        'KES100'.padLeft(10).padRight(18),
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],

@@ -101,7 +101,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
                                     ),
                                     Spacer(),
                                     Text(
-                                      '\$ 38.00',
+                                      'KES 38.00',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText2!
@@ -235,7 +235,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> {
                                     ),
                                     Spacer(),
                                     Text(
-                                      '\$ 38.00',
+                                      'KES 38.00',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText2!

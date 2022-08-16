@@ -39,7 +39,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       .copyWith(color: Theme.of(context).primaryColor),
                 ),
                 subtitle: Text(
-                  '\$38.00',
+                  'KES38.00',
                   style: Theme.of(context)
                       .textTheme
                       .headline6!

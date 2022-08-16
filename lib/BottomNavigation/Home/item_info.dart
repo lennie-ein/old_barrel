@@ -239,7 +239,7 @@ class _ItemInfoPageState extends State<ItemInfoPage>
                     _controller1!.reverse();
                   },
                   prefix: Text(
-                    '\$ 25.20',
+                    'KES 25.20',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1!
