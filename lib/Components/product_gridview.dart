@@ -79,7 +79,7 @@ class _ProductGridViewState extends State<ProductGridView> {
                       child: RichText(
                         text: TextSpan(children: [
                           TextSpan(
-                              text: '\$ ${products[index].price}' + '\n\n',
+                              text: 'KES ${products[index].price}' + '\n\n',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!
