@@ -13,7 +13,25 @@ import 'package:old_barrel/Components/entry_field2.dart';
 import 'package:old_barrel/Locale/locale.dart';
 import 'package:old_barrel/Routes/page_routes.dart';
 
+var locationMessage = '';
+var Address = '';
+Future getCurrentLocation() async {
+  var position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high);
+  // var lastPosition = await Geolocator.getLastKnownPosition();
+  List<Placemark> placemarks =
+  await placemarkFromCoordinates(position.latitude, position.longitude);
+  Placemark place = placemarks[0];
+  // print(lastPosition);
+  // print(placemarks);
+  // print(place);
 
+    locationMessage = "Lat: ${position.latitude},Long: ${position.longitude}";
+    Address =
+    "${place.isoCountryCode}, ${place.administrativeArea}, ${place.locality}, ${place.thoroughfare}";
+
+
+}
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -27,26 +45,9 @@ class Category {
 }
 
 class _HomePageState extends State<HomePage> {
-  var locationMessage = '';
-  var Address = '';
 
-  Future getCurrentLocation() async {
-    var position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    // var lastPosition = await Geolocator.getLastKnownPosition();
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    Placemark place = placemarks[0];
-    // print(lastPosition);
-    // print(placemarks);
-    // print(place);
-    setState(() {
-      locationMessage = "Lat: ${position.latitude},Long: ${position.longitude}";
-      Address =
-      "${place.isoCountryCode}, ${place.administrativeArea}, ${place.locality}, ${place.thoroughfare}";
-    });
 
-  }
+
 
   Future permissionsCheck() async {
     bool serviceEnabled;
